@@ -1,56 +1,55 @@
 # Portfolio Optimizer
 
-> Markowitz mean-variance portfolio optimization with interactive Streamlit dashboard
+> Markowitz Mean-Variance Optimization with efficient frontier visualization.
 
-[![Python](https://img.shields.io/badge/Python-3.11-blue)](https://python.org)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.28-red)](https://streamlit.io)
+## Description
 
-## Overview
-
-Professional portfolio optimization framework implementing Modern Portfolio Theory. Finds the optimal asset allocation that maximizes the Sharpe ratio or minimizes volatility for a given universe of stocks.
-
-## Methodology
-
-### Efficient Frontier (Markowitz, 1952)
-- Expected returns estimated from historical daily returns × 252
-- Covariance matrix computed from historical price data
-- Monte Carlo simulation of 1,000+ random portfolios to map the feasible space
-- Optimal portfolios found via `scipy.optimize.minimize` (SLSQP)
-
-### Optimization Objectives
-| Portfolio | Objective |
-|-----------|-----------|
-| **Max Sharpe** | Maximize `(E[R] - Rf) / σ` |
-| **Min Volatility** | Minimize `σ = √(wᵀΣw)` |
-| **Equal Weight** | Benchmark: 1/N allocation |
-
-## Default Universe (10 US stocks)
-AAPL, MSFT, GOOGL, JPM, GS, BLK, V, AMZN, NVDA, META
+A quantitative portfolio construction tool that applies **Modern Portfolio Theory** to find optimal asset allocations. Computes the efficient frontier, identifies the Max Sharpe Ratio portfolio and the Minimum Volatility portfolio, and renders an interactive chart via Plotly/Streamlit.
 
 ## Tech Stack
 
-`Python 3.11` `Streamlit` `PyPortfolioOpt` `yfinance` `scipy` `Plotly` `matplotlib`
+| Layer | Library |
+|-------|---------|
+| Data  | `yfinance` |
+| Numerics | `numpy`, `pandas` |
+| Optimisation | `scipy.optimize` |
+| Visualisation | `plotly`, `matplotlib`, `streamlit` |
 
-## How to Run
+## Installation
 
 ```bash
+git clone https://github.com/Wxlly00/portfolio-optimizer.git
+cd portfolio-optimizer
 pip install -r requirements.txt
+```
 
-# Terminal + chart
-python main.py
+## Usage
 
-# Interactive dashboard
+### CLI
+```bash
+python main.py            # Runs optimization on default 10-asset universe
+```
+
+### Streamlit App
+```bash
 streamlit run app.py
 ```
 
-## Output
+Select tickers, adjust the risk-free rate, and explore the efficient frontier interactively.
 
-- Optimal portfolio weights for 3 strategies
-- Annual return, volatility, Sharpe ratio comparison
-- Efficient frontier PNG (`output/efficient_frontier.png`)
-- Interactive Streamlit dashboard with portfolio analytics
+## Features
+
+- **Efficient frontier** — 1,000 random portfolios + optimized boundary
+- **Max Sharpe Ratio** portfolio — highest risk-adjusted return
+- **Min Volatility** portfolio — lowest annualized standard deviation
+- **Live data** via yfinance (2-year history) with synthetic fallback
+- Interactive scatter plot with color-coded Sharpe ratios
+
+## Default Universe
+
+`AAPL · MSFT · GOOGL · JPM · GS · BLK · V · AMZN · NVDA · META`
 
 ## Author
 
-**Wilfried LAWSON HELLU** | Finance Analyst  
-📧 wilfriedlawpro@gmail.com | 🔗 [LinkedIn](https://linkedin.com/in/wilfried-lawsonhellu) | 🐙 [GitHub](https://github.com/Wxlly00)
+**Wilfried LAWSON HELLU** — Finance Analyst  
+[github.com/Wxlly00](https://github.com/Wxlly00)
